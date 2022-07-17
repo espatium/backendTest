@@ -10,7 +10,7 @@ var conn = mysql.createConnection({
     database : 'espa'
 });
 
-conn.connect();
+//conn.connect();
 
 const server = app.listen(3001, () => {
     console.log('Start Server : 54.180.1.96:3001');
@@ -49,7 +49,7 @@ app.get('/api/users/:type', async(req, res) => {
 });
 
 
-conn.end();
+//conn.end();
 
 
 
