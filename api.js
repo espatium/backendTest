@@ -8,7 +8,10 @@ const server = app.listen(3001, () => {
 });
 
 app.get('/api/users/:type', async(req, res) => {
-    res.send('connect.');
+    let {type} = req.params;
+
+    console.log(type);
+    res.send('ok');
 });
 
 
