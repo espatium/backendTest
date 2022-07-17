@@ -34,7 +34,7 @@ app.get('/api/users/:type', async(req, res) => {
         if (err) {
             res.send(err);
         } else {
-            res.send('rows', rows);
+            res.send(rows);
         }
         
     });
