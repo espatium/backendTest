@@ -30,12 +30,14 @@ app.get('/api/users/:type', async(req, res) => {
     console.log(type);
 
 
-    conn.query('select * from users', function(err, rows, fields) {
+    conn.query('SELECT * FROM users', function(err, rows, fields) {
         if (err) {
             console.log(err);
+            res.send('Not ok');
         } else {
             console.log('rows', rows);
             console.log('fields', fields);
+            res.send('ok');
         }
         
     });
