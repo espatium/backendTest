@@ -33,10 +33,8 @@ app.get('/api/users/:type', async(req, res) => {
     conn.query('SELECT * FROM users;', function(err, rows, fields) {
         if (err) {
             res.send(err);
-            res.send('Not ok');
         } else {
             res.send('rows', rows);
-            res.send('ok');
         }
         
     });
