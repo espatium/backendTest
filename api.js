@@ -4,8 +4,8 @@ const app = express();
 
 var mysql = require('mysql');
 var conn = mysql.createConnection({
-    host : '54.180.1.96',
-    user : 'ubuntu',
+    host : 'database-1.c0vugvhjuhqj.ap-northeast-2.rds.amazonaws.com',
+    user : 'admin',
     password : 'choi6014#',
     database : 'espa'
 });
