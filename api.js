@@ -47,21 +47,23 @@ const server = app.listen(3001, () => {
 ///////////// 테이블의 특정 필드 데이터 불러오기 ///////////////////////////
 app.get('/api/users/id/:type', async(req, res) => {
 
-        let {type} = req.params;
+    let {type} = req.params;
+
+    console.log(type);
     
-        console.log(type);
-    
-        conn.query('SELECT * FROM users WHERE id = 1;', function(err, rows, fields) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send(rows);
-            }
-            
-        });
-    
-    
+    set @id_value = type
+
+    conn.query('SELECT * FROM users WHERE id = @id_value;', function(err, rows, fields) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(rows);
+        }
+
     });
+
+
+});
     
 
 
