@@ -51,7 +51,7 @@ app.get('/api/users/id/:type', async(req, res) => {
     
         console.log(type);
     
-        conn.query('SELECT * FROM users WHERE id = type;', function(err, rows, fields) {
+        conn.query('SELECT * FROM users WHERE id = 1;', function(err, rows, fields) {
             if (err) {
                 res.send(err);
             } else {
