@@ -51,7 +51,7 @@ app.get('/api/users/id/:type', async(req, res) => {
 
     console.log(type);
     
-    set @id_value = type
+    set @id_value = type;
 
     conn.query('SELECT * FROM users WHERE id = @id_value;', function(err, rows, fields) {
         if (err) {
