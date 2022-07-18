@@ -17,34 +17,55 @@ const server = app.listen(3001, () => {
 
 });
 
+
+
+
 // 콜론이 있으면 어떤값이든 들어올수 있다는 의미임
 // app.get('/api/users/:type', async(req, res) => {
 //     res.send('connect.');
 // });
 //
 
-app.get('/api/users/:type', async(req, res) => {
-
-    let {type} = req.params;
-
-    console.log(type);
 
 
-    conn.query('SELECT * FROM users;', function(err, rows, fields) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(rows);
-        }
-        
+///////////// 테이블의 모든 데이터 불러오기 ///////////////////////////
+// app.get('/api/users/:type', async(req, res) => {
+//     let {type} = req.params;
+//     console.log(type);
+//     conn.query('SELECT * FROM users;', function(err, rows, fields) {
+//         if (err) {
+//             res.send(err);
+//         } else {
+//             res.send(rows);
+//         }
+//     });
+// });
+
+
+
+
+///////////// 테이블의 특정 필드 데이터 불러오기 ///////////////////////////
+app.get('/api/users/id/:type', async(req, res) => {
+
+        let {type} = req.params;
+    
+        console.log(type);
+    
+        conn.query('SELECT * FROM users WHERE id = type;', function(err, rows, fields) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(rows);
+            }
+            
+        });
+    
+    
     });
+    
 
 
-});
+
 
 
 //conn.end();
-
-
-
-
