@@ -44,7 +44,7 @@ const server = app.listen(3001, () => {
 
 
 
-///////////// 테이블의 특정 필드 데이터 불러오기 ///////////////////////////
+///////////// id를 지정해서 테이블의 특정 필드 데이터 불러오기 ///////////////////////////
 app.get('/api/users/id/:type', async(req, res) => {
 
     let {type} = req.params;
@@ -52,6 +52,30 @@ app.get('/api/users/id/:type', async(req, res) => {
     console.log(type);
 
     conn.query('SELECT * FROM users WHERE id = ?;', type, function(err, rows, fields) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(rows);
+        }
+
+    });
+
+
+});
+
+
+
+
+///////////// customer_id를 지정해서 테이블의 특정 필드 데이터 불러오기 ///////////////////////////
+app.get('/api/users/cid/:type', async(req, res) => {
+
+    let {type} = req.params;
+
+    console.log(type);
+    
+    var data_id = 'SELECT id FROM users WHERE customer_id = ?;', type
+
+    conn.query('SELECT * FROM users WHERE id = ?;', data_id, function(err, rows, fields) {
         if (err) {
             res.send(err);
         } else {
