@@ -78,7 +78,7 @@ app.get('/api/users/cid/:type', async(req, res) => {
             console.log(err);
         } else {
             console.log(rows1);
-            var data_id = rows1
+            var data_id = parseInt(rows1)
             
             conn.query('SELECT * FROM users WHERE id = ?;', data_id, function(err, rows2, fields) {
                 console.log(data_id);
