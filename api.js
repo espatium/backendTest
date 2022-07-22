@@ -79,18 +79,20 @@ app.get('/api/users/cid/:type', async(req, res) => {
         } else {
             console.log(rows);
             var data_id = rows
+            
+            conn.query('SELECT * FROM users WHERE id = ?;', data_id, function(err, rows, fields) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(rows);
+                }
+
+            });
         }
 
     });
 
-    conn.query('SELECT * FROM users WHERE id = ?;', data_id, function(err, rows, fields) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(rows);
-        }
-
-    });
+    
 
 
 });
