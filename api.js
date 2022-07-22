@@ -73,18 +73,20 @@ app.get('/api/users/cid/:type', async(req, res) => {
 
     console.log(type);
     
-    conn.query('SELECT id FROM users WHERE customer_id = ?;', type, function(err, rows, fields) {
+    conn.query('SELECT id FROM users WHERE customer_id = ?;', type, function(err, rows1, fields) {
         if (err) {
             console.log(err);
         } else {
-            console.log(rows);
-            var data_id = rows
+            console.log(rows1);
+            var data_id = rows1
             
-            conn.query('SELECT * FROM users WHERE id = ?;', data_id, function(err, rows, fields) {
+            conn.query('SELECT * FROM users WHERE id = ?;', data_id, function(err, rows2, fields) {
+                console.log(data_id);
+                console.log(rows2);
                 if (err) {
                     res.send(err);
                 } else {
-                    res.send(rows);
+                    res.send(rows2);
                 }
 
             });
