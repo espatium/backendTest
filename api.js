@@ -80,7 +80,7 @@ app.get('/api/users/cid/:type', async(req, res) => {
             console.log(rows1);
             let data_id = rows1[0].id;
             
-            conn.query('SELECT * FROM users WHERE id = ?;', type, function(err2, rows2, fields2) {
+            conn.query('SELECT * FROM users WHERE id = ?;', data_id, function(err2, rows2, fields2) {
                 console.log(data_id);
                 console.log(rows2);
                 if (err2) {
