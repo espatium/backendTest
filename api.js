@@ -18,14 +18,11 @@ const server = app.listen(3001, () => {
 });
 
 
-
-
 // 콜론이 있으면 어떤값이든 들어올수 있다는 의미임
 // app.get('/api/users/:type', async(req, res) => {
 //     res.send('connect.');
 // });
 //
-
 
 
 ///////////// 테이블의 모든 데이터 불러오기 ///////////////////////////
@@ -40,8 +37,6 @@ const server = app.listen(3001, () => {
 //         }
 //     });
 // });
-
-
 
 
 ///////////// id를 지정해서 테이블의 특정 필드 데이터 불러오기 ///////////////////////////
@@ -64,35 +59,45 @@ app.get('/api/users/id/:type', async(req, res) => {
 });
 
 
+///////////// 특정 테이블 데이터를 모두 가져와서 특정 key 값만 출력하기 /////////////
+/*
+var sql = 'SELECT * FROM topic';
+conn.query(sql, function(err, rows, fields) {
+    if(err) {
+        console.log(err);
+    } else {
+        for(var i=0; i<rows.length; i++) {
+            console.log(rows[i].author);
+        }
+    }
+});
+*/
 
 
-///////////// customer_id를 지정해서 테이블의 특정 필드 데이터 불러오기 ///////////////////////////
+
+///////////// customer_id를 지정해서 테이블의 특정 row 데이터 불러오기 ///////////////////////////
 app.get('/api/users/cid/:type', async(req, res) => {
 
     let {type} = req.params;
 
     console.log(type);
     
+    // customer_id를 지정해서 id 가져오고, 그 아이디를 이용해서 특정 row 데이터 가져오기
     conn.query('SELECT id FROM users WHERE customer_id = ?;', type, function(err1, rows1, fields) {
         if (err1) {
             console.log(err1);
         } else {
             console.log(rows1);
             let data_id = rows1[0].id;
-            console.log(data_id);
             
             conn.query('SELECT * FROM users WHERE id = ?;', data_id, function(err2, rows2, fields) {
-                console.log(data_id);
-                console.log(rows2);
                 if (err2) {
                     res.send(err2);
                 } else {
                     res.send(rows2);
                 }
-
             });
         }
-
     });
 
     
