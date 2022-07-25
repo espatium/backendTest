@@ -104,7 +104,7 @@ app.get('/api/users/cid/:type', async(req, res) => {
 
 
 ///////////// DB에 값 추가하기 ///////////////////////////
-app.post('/api/users/add', async(req, res) => {
+app.post('/api/users/add', function(req, res) => {
     var customer_id = req.body.customer_id;
     var nickname = req.body.nickname;
     var email = req.body.email;
