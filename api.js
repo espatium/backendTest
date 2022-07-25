@@ -116,7 +116,6 @@ app.get('/api/users/cid/:type', async(req, res) => {
 app.post('/api/users/add', function(req, res) {
     var req_body = req.body;
     console.log(req_body);
-    var id = req.body.id;
     var customer_id = req.body.customer_id.toString();
     var nickname = req.body.nickname.toString();
     var email = req.body.email.toString();
@@ -128,8 +127,8 @@ app.post('/api/users/add', function(req, res) {
     console.log(join_date);
     console.log(last_login_date);
 
-    var sql = 'INSERT INTO users (id, customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?, ?)';
-    conn.query(sql, [id, customer_id, nickname, email, join_date, last_login_date], (err, rows, fields) => {
+    var sql = 'INSERT INTO users (customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?)';
+    conn.query(sql, [customer_id, nickname, email, join_date, last_login_date], (err, rows, fields) => {
         if(err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
