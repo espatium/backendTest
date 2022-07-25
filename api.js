@@ -105,15 +105,14 @@ app.get('/api/users/cid/:type', async(req, res) => {
 
 ///////////// DB에 값 추가하기 ///////////////////////////
 app.post('/api/users/add', function(req, res) {
-    var id = req.body.id;
-    var customer_id = req.body.customer_id;
-    var nickname = req.body.nickname;
-    var email = req.body.email;
-    var join_date = req.body.join_date;
-    var last_login_date = req.body.last_login_date;
+    var customer_id = req.body.customer_id.toString();
+    var nickname = req.body.nickname.toString();
+    var email = req.body.email.toString();
+    var join_date = req.body.join_date.toString();
+    var last_login_date = req.body.last_login_date.toString();
 
-    var sql = 'INSERT INTO users (id, customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?, ?)';
-    conn.query(sql, [id.toInt(), customer_id.toString(), nickname.toString(), email.toString(), join_date.toString(), last_login_date.toString()], (err, rows, fields) => {
+    var sql = 'INSERT INTO users (customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?)';
+    conn.query(sql, [customer_id, nickname, email, join_date, last_login_date], (err, rows, fields) => {
         if(err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
