@@ -99,15 +99,30 @@ app.get('/api/users/cid/:type', async(req, res) => {
             });
         }
     });
-
-    
-
-
 });
     
 
 
+///////////// DB에 값 추가하기 ///////////////////////////
+app.post('/api/users/add', async(req, res) => {
+    var id = req.body.id;
+    var customer_id = req.body.customer_id;
+    var nickname = req.body.nickname;
+    var email = req.body.email;
+    var join_date = req.body.join_date;
+    var last_login_date = req.body.last_login_date;
 
+    var sql = 'INSERT INTO users (id, customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?, ?)';
+    conn.query(sql, [id, customer_id, nickname, email, join_date, last_login_date], function(err, rows, fields) {
+        if(err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            consel.log(rows);
+            res.send(rows);
+        }
+    });
+});
 
 
 //conn.end();
