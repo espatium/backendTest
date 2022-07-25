@@ -19,7 +19,7 @@ const server = app.listen(3001, () => {
 
 
 // body-parser 불러오기
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 
 // body-parser 가 클라이언트에서 오는 정보를 서버에서 분석 후 가져오게 하는데 1. 인코딩된 url을 가져오는 방법, 2. json 타입으로 된 것을 가져오는 방법 두 가지 모두 가져올 수 있도록 합니다.
 app.use(bodyParser.urlencoded({ extended: true,}));
@@ -116,6 +116,7 @@ app.get('/api/users/cid/:type', async(req, res) => {
 app.post('/api/users/add', function(req, res) {
     var req_body = req.body;
     console.log(req_body);
+    var id = req.body.id.toInt();
     var customer_id = req.body.customer_id.toString();
     var nickname = req.body.nickname.toString();
     var email = req.body.email.toString();
@@ -127,8 +128,8 @@ app.post('/api/users/add', function(req, res) {
     console.log(join_date);
     console.log(last_login_date);
 
-    var sql = 'INSERT INTO users (customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?)';
-    conn.query(sql, [customer_id, nickname, email, join_date, last_login_date], (err, rows, fields) => {
+    var sql = 'INSERT INTO users (id, customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?, ?)';
+    conn.query(sql, [id, customer_id, nickname, email, join_date, last_login_date], (err, rows, fields) => {
         if(err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
