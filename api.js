@@ -116,7 +116,7 @@ app.get('/api/users/cid/:type', async(req, res) => {
 app.post('/api/users/add', function(req, res) {
     var req_body = req.body;
     console.log(req_body);
-    var id = req.body.id.toInt();
+    var id = req.body.id;
     var customer_id = req.body.customer_id.toString();
     var nickname = req.body.nickname.toString();
     var email = req.body.email.toString();
