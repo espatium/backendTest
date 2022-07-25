@@ -105,12 +105,12 @@ app.get('/api/users/cid/:type', async(req, res) => {
 
 ///////////// DB에 값 추가하기 ///////////////////////////
 app.post('/api/users/add', async(req, res) => {
-    var id = req.Body.id;
-    var customer_id = req.Body.customer_id;
-    var nickname = req.Body.nickname;
-    var email = req.Body.email;
-    var join_date = req.Body.join_date;
-    var last_login_date = req.Body.last_login_date;
+    var id = req.body.id;
+    var customer_id = req.body.customer_id;
+    var nickname = req.body.nickname;
+    var email = req.body.email;
+    var join_date = req.body.join_date;
+    var last_login_date = req.body.last_login_date;
 
     var sql = 'INSERT INTO users (id, customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?, ?)';
     conn.query(sql, [id, customer_id, nickname, email, join_date, last_login_date], function(err, rows, fields) {
