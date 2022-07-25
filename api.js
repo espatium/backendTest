@@ -110,6 +110,11 @@ app.post('/api/users/add', function(req, res) {
     var email = req.body.email.toString();
     var join_date = req.body.join_date.toString();
     var last_login_date = req.body.last_login_date.toString();
+    console.log(customer_id);
+    console.log(nickname);
+    console.log(email);
+    console.log(join_date);
+    console.log(last_login_date);
 
     var sql = 'INSERT INTO users (customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?)';
     conn.query(sql, [customer_id, nickname, email, join_date, last_login_date], (err, rows, fields) => {
