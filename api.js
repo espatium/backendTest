@@ -105,11 +105,13 @@ app.get('/api/users/cid/:type', async(req, res) => {
 
 ///////////// DB에 값 추가하기 ///////////////////////////
 app.post('/api/users/add', function(req, res) {
-    const customer_id = req.body.customer_id.toString();
-    const nickname = req.body.nickname.toString();
-    const email = req.body.email.toString();
-    const join_date = req.body.join_date.toString();
-    const last_login_date = req.body.last_login_date.toString();
+    var req_body = req.body
+    console.log(req_body);
+    var customer_id = req.body.customer_id.toString();
+    var nickname = req.body.nickname.toString();
+    var email = req.body.email.toString();
+    var join_date = req.body.join_date.toString();
+    var last_login_date = req.body.last_login_date.toString();
     console.log(customer_id);
     console.log(nickname);
     console.log(email);
