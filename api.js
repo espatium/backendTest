@@ -22,7 +22,6 @@ const server = app.listen(3001, () => {
 const bodyParser = require('body-parser');
 
 // body-parser 가 클라이언트에서 오는 정보를 서버에서 분석 후 가져오게 하는데 1. 인코딩된 url을 가져오는 방법, 2. json 타입으로 된 것을 가져오는 방법 두 가지 모두 가져올 수 있도록 합니다.
-const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true,}));
 app.use(bodyParser.json()); 
 
