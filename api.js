@@ -113,7 +113,7 @@ app.post('/api/users/add', function(req, res) {
     var last_login_date = req.body.last_login_date;
 
     var sql = 'INSERT INTO users (id, customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?, ?)';
-    conn.query(sql, [id, customer_id, nickname, email, join_date, last_login_date], function(err, rows, fields) => {
+    conn.query(sql, [id, customer_id, nickname, email, join_date, last_login_date], (err, rows, fields) => {
         if(err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
