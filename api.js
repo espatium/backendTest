@@ -133,7 +133,7 @@ app.post('/api/users/add', function(req, res) {
             console.log(err);
             res.status(500).send('Internal Server Error');
         } else {
-            consel.log(rows);
+            console.log(rows);
             res.send(rows);
         }
     });
