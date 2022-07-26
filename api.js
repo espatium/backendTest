@@ -132,6 +132,7 @@ app.post('/api/users/update/:type', function(req, res) {
     conn.query(sql, params, function(err, rows, fields) {
         if (err) {
             console.log(err);
+            res.status(500).send('Internal Server Error');
         } else {
             console.log(rows);
             res.send(rows);
