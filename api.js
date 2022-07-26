@@ -48,25 +48,6 @@ app.use(bodyParser.json());
 // });
 
 
-///////////// id를 지정해서 테이블의 특정 필드 데이터 불러오기 ///////////////////////////
-app.get('/api/users/id/:type', async(req, res) => {
-
-    let {type} = req.params;
-
-    console.log(type);
-
-    conn.query('SELECT * FROM users WHERE id = ?;', type, function(err, rows, fields) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(rows);
-        }
-
-    });
-
-
-});
-
 
 ///////////// 특정 테이블 데이터를 모두 가져와서 특정 key 값만 출력하기 /////////////
 /*
@@ -84,7 +65,8 @@ conn.query(sql, function(err, rows, fields) {
 
 
 
-///////////// customer_id를 지정해서 테이블의 특정 row 데이터 불러오기 ///////////////////////////
+///////////// customer_id를 지정해서 특정 row 데이터 불러오기 ///////////////////////////
+/*
 app.get('/api/users/cid/:type', async(req, res) => {
 
     let {type} = req.params;
@@ -109,26 +91,23 @@ app.get('/api/users/cid/:type', async(req, res) => {
         }
     });
 });
+*/
     
 
 
-///////////// DB에 값 추가하기 ///////////////////////////
+///////////// users DB에 값 추가하기 ///////////////////////////
 app.post('/api/users/add', function(req, res) {
     var req_body = req.body;
     console.log(req_body);
-    var customer_id = req.body.customer_id.toString();
     var nickname = req.body.nickname.toString();
     var email = req.body.email.toString();
     var join_date = req.body.join_date.toString();
     var last_login_date = req.body.last_login_date.toString();
-    console.log(customer_id);
-    console.log(nickname);
-    console.log(email);
-    console.log(join_date);
-    console.log(last_login_date);
+    var user_version = req.body.user_version();
+    var level = req.body.level();
 
-    var sql = 'INSERT INTO users (customer_id, nickname, email, join_date, last_login_date) VALUES (?, ?, ?, ?, ?)';
-    conn.query(sql, [customer_id, nickname, email, join_date, last_login_date], (err, rows, fields) => {
+    var sql = 'INSERT INTO users (nickname, email, join_date, last_login_date, user_version, level) VALUES (?, ?, ?, ?, ?, ?)';
+    conn.query(sql, [nickname, email, join_date, last_login_date, user_version, level], (err, rows, fields) => {
         if(err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
@@ -138,6 +117,48 @@ app.post('/api/users/add', function(req, res) {
         }
     });
 });
+
+
+
+///////////// users DB에 값 수정하기 ///////////////////////////
+app.post('/api/users/update/:type', function(req, res) {
+    var id = req.params.type;
+    var last_login_date = req.body.last_login_date.toString();
+    var user_version = req.body.user_version();
+    var level = req.body.level();
+    
+    var sql = 'UPDEATE users SET last_login_date=?, user_version=?, level=? WHERE id=?';
+    var params = [last_login_date, user_version, level, id]
+    conn.query(sql, params, function(err, rows, fields) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(rows);
+            res.send(rows);
+        }
+    });
+});
+
+
+
+///////////// id를 지정해서 users 테이블의 특정 row 데이터 불러오기 ///////////////////////////
+app.get('/api/users/id/:type', async(req, res) => {
+
+    let {type} = req.params;
+
+    conn.query('SELECT * FROM users WHERE id = ?;', type, function(err, rows, fields) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(rows);
+        }
+    });
+});
+
+
+
+
+
 
 
 //conn.end();
