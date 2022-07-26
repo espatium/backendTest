@@ -103,8 +103,8 @@ app.post('/api/users/add', function(req, res) {
     var email = req.body.email.toString();
     var join_date = req.body.join_date.toString();
     var last_login_date = req.body.last_login_date.toString();
-    var user_version = req.body.user_version();
-    var level = req.body.level();
+    var user_version = req.body.user_version;
+    var level = req.body.level;
 
     var sql = 'INSERT INTO users (nickname, email, join_date, last_login_date, user_version, level) VALUES (?, ?, ?, ?, ?, ?)';
     conn.query(sql, [nickname, email, join_date, last_login_date, user_version, level], (err, rows, fields) => {
@@ -124,8 +124,8 @@ app.post('/api/users/add', function(req, res) {
 app.post('/api/users/update/:type', function(req, res) {
     var id = req.params.type;
     var last_login_date = req.body.last_login_date.toString();
-    var user_version = req.body.user_version();
-    var level = req.body.level();
+    var user_version = req.body.user_version;
+    var level = req.body.level;
     
     var sql = 'UPDEATE users SET last_login_date=?, user_version=?, level=? WHERE id=?';
     var params = [last_login_date, user_version, level, id]
