@@ -128,7 +128,7 @@ app.post('/api/users/update/:type', function(req, res) {
     var level = req.body.level;
     
     var sql = 'UPDEATE users SET last_login_date=?, user_version=?, level=? WHERE id=?';
-    var params = [last_login_date, user_version, level, id]
+    var params = [last_login_date, user_version, level, type]
     conn.query(sql, params, function(err, rows, fields) {
         if (err) {
             console.log(err);
