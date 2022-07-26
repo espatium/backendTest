@@ -122,7 +122,7 @@ app.post('/api/users/add', function(req, res) {
 
 ///////////// users DB에 값 수정하기 ///////////////////////////
 app.post('/api/users/update/:type', function(req, res) {
-    var id = req.params.type;
+    let {type} = req.params;
     var last_login_date = req.body.last_login_date.toString();
     var user_version = req.body.user_version;
     var level = req.body.level;
