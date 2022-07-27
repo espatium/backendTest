@@ -143,7 +143,7 @@ app.post('/api/users/update/:type', function(req, res) {
 
 
 ///////////// id를 지정해서 users 테이블의 특정 row 데이터 불러오기 ///////////////////////////
-app.get('/api/users/id/:type', async(req, res) => {
+app.get('/api/users/delete/:type', async(req, res) => {
 
     let {type} = req.params;
 
@@ -156,6 +156,22 @@ app.get('/api/users/id/:type', async(req, res) => {
     });
 });
 
+
+
+
+///////////// id를 지정해서 users 테이블의 특정 row 삭제하기 ///////////////////////////
+app.get('/api/users/id/:type', async(req, res) => {
+
+    let {type} = req.params;
+
+    conn.query('DELETE FROM users WHERE id = ?;', type, function(err, rows, fields) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(rows);
+        }
+    });
+});
 
 
 
