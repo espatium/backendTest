@@ -121,7 +121,7 @@ app.post('/api/users/add', function(req, res) {
 
 
 ///////////// users DB에 값 수정하기 ///////////////////////////
-app.post('/api/users/update/:type', function(req, res) {
+app.put('/api/users/update/:type', function(req, res) {
     let {type} = req.params;
     var last_login_date = req.body.last_login_date.toString();
     var user_version = req.body.user_version;
@@ -160,7 +160,7 @@ app.get('/api/users/read/:type', async(req, res) => {
 
 
 ///////////// id를 지정해서 users 테이블의 특정 row 삭제하기 ///////////////////////////
-app.get('/api/users/delete/:type', async(req, res) => {
+app.delete('/api/users/delete/:type', async(req, res) => {
 
     let {type} = req.params;
 
