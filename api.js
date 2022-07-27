@@ -169,7 +169,6 @@ app.delete('/api/users/delete/:type', async(req, res) => {
             console.log(err);
             res.send(err);
         } else {
-            console.log("Number of records deleted: " + result.affectedRows);
             res.send(rows);
         }
     });
