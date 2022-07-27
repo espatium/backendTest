@@ -143,7 +143,7 @@ app.post('/api/users/update/:type', function(req, res) {
 
 
 ///////////// id를 지정해서 users 테이블의 특정 row 데이터 불러오기 ///////////////////////////
-app.get('/api/users/id/:type', async(req, res) => {
+app.get('/api/users/read/:type', async(req, res) => {
 
     let {type} = req.params;
 
@@ -166,8 +166,10 @@ app.get('/api/users/delete/:type', async(req, res) => {
 
     conn.query('DELETE FROM users WHERE id = ?;', type, function(err, rows, fields) {
         if (err) {
+            console.log(err);
             res.send(err);
         } else {
+            console.log("Number of records deleted: " + result.affectedRows);
             res.send(rows);
         }
     });
