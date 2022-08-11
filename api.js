@@ -217,8 +217,9 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
         if (err) {
             res.send(err);
         } else {
-            console.log(old_data);
             var old_data = rows;
+            console.log(old_data);
+            console.log(!old_data);
             if (!old_data) {
                 var new_data = 1;
                 console.log("null");
