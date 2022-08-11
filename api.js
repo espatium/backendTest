@@ -190,7 +190,7 @@ app.post('/api/ox_1_1_user_correct_month1/add', function(req, res) {
     var user_num = req.body.user_num;
     var level = 1
 
-    var sql = 'INSERT INTO s_db_ox_1_1_user_correct_month1 (user_num, level,) VALUES (?, ?)';
+    var sql = 'INSERT INTO s_db_ox_1_1_user_correct_month1 (user_num, level) VALUES (?, ?)';
     conn.query(sql, [user_num, level], (err, rows, fields) => {
         if(err) {
             console.log(err);
