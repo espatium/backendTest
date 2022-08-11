@@ -209,8 +209,7 @@ app.post('/api/ox_1_1_user_correct_month1/add', function(req, res) {
 app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
     
     let {user_id} = req.params;
-    var question_num0 = req.body.question_num;
-    var question_num = 'c' + question_num0
+    var question_num = req.body.question_num;
     
     var sql = 'SELECT ?? FROM s_db_ox_1_1_user_correct_month1 WHERE user_number = ?';
     var params = [question_num, user_id]
@@ -219,7 +218,7 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
             res.send(err);
         } else {
             console.log(rows);
-            var old_data = rows[0].'c' + question_num0;
+            var old_data = rows[0].question_num.value;
             console.log(old_data);
             if (!old_data) {
                 var new_data = 1;
