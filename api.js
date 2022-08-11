@@ -192,7 +192,7 @@ app.post('/api/ox_1_1_user_correct_month1/add', function(req, res) {
     var sql = 'INSERT INTO s_db_ox_1_1_user_correct_month1 (user_num, 1, 0,0,0,0,0,0,0,0,0,0,\
                0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,\
                0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0) VALUES (?)';
-    conn.query(sql, [nickname, email, join_date, last_login_date, user_version, level], (err, rows, fields) => {
+    conn.query(sql, [user_num], (err, rows, fields) => {
         if(err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
