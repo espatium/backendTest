@@ -184,6 +184,7 @@ app.delete('/api/users/delete/:type', async(req, res) => {
 
 ////////////////// s_db_ox_1_1_user_correct_month1 
 
+/////// user 생성
 app.post('/api/ox_1_1_user_correct_month1/add', function(req, res) {
     var req_body = req.body;
     console.log(req_body);
@@ -202,6 +203,40 @@ app.post('/api/ox_1_1_user_correct_month1/add', function(req, res) {
     });
 });
 
+
+
+/////// 문제 맞음
+app.put('/api/s_db_ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
+    
+    let {user_id} = req.params;
+    var @question_num = req.body.question_num;
+    
+    conn.query('SELECT @question_num FROM users;', function(err, rows, fields) {
+        if (err) {
+            res.send(err);
+        } else {
+            var old_data = rows;
+            if (old_data == null) {
+                var new_data = 1;
+            } else {
+                var new_data = old_data + 1;
+            }
+        }
+    });
+    
+    
+    var sql = 'UPDATE s_db_ox_1_1_user_correct_month1 SET @question_num=?, WHERE id=?';
+    var params = [new_data, user_id]
+    conn.query(sql, params, function(err, rows, fields) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            console.log(rows);
+            res.send(rows);
+        }
+    });
+});
 
 
 
