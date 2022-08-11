@@ -206,7 +206,7 @@ app.post('/api/ox_1_1_user_correct_month1/add', function(req, res) {
 
 
 /////// 문제 맞음
-app.put('/api/s_db_ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
+app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
     
     let {user_id} = req.params;
     var question_num = req.body.question_num;
