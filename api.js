@@ -223,19 +223,18 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
             } else {
                 var new_data = old_data + 1;
             }
-        }
-    });
-    
-    
-    var sql = 'UPDATE s_db_ox_1_1_user_correct_month1 SET ?? = ?, WHERE id=?';
-    var params = [question_num, new_data, user_id]
-    conn.query(sql, params, function(err, rows, fields) {
-        if (err) {
-            console.log(err);
-            res.status(500).send('Internal Server Error');
-        } else {
-            console.log(rows);
-            res.send(rows);
+            
+            var sql = 'UPDATE s_db_ox_1_1_user_correct_month1 SET ?? = ?, WHERE id=?';
+            var params = [question_num, new_data, user_id]
+            conn.query(sql, params, function(err, rows, fields) {
+                if (err) {
+                    console.log(err);
+                    res.status(500).send('Internal Server Error');
+                } else {
+                    console.log(rows);
+                    res.send(rows);
+                }
+            });
         }
     });
 });
