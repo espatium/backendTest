@@ -218,8 +218,6 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
             res.send(err);
         } else {
             var old_data = rows[0].question_num;
-            console.log(old_data);
-            console.log(!old_data);
             if (!old_data) {
                 var new_data = 1;
                 console.log("null");
@@ -229,7 +227,7 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
             }
             
             console.log(new_data);
-            var sql = 'UPDATE s_db_ox_1_1_user_correct_month1 SET ?? = ?, WHERE user_number=?';
+            var sql = 'UPDATE s_db_ox_1_1_user_correct_month1 SET ?? = ? WHERE user_number=?';
             var params = [question_num, new_data, user_id]
             conn.query(sql, params, function(err, rows, fields) {
                 if (err) {
