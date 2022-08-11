@@ -213,7 +213,7 @@ app.put('/api/s_db_ox_1_1_user_correct_month1/update/:user_id', function(req, re
     
     var sql = 'SELECT ?? FROM s_db_ox_1_1_user_correct_month1';
     var params = [question_num]
-    conn.query((sql, params, function(err, rows, fields) {
+    conn.query(sql, params, function(err, rows, fields) {
         if (err) {
             res.send(err);
         } else {
