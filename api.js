@@ -211,8 +211,8 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
     let {user_id} = req.params;
     var question_num = req.body.question_num;
     
-    var sql = 'SELECT ?? FROM s_db_ox_1_1_user_correct_month1';
-    var params = [question_num]
+    var sql = 'SELECT ?? FROM s_db_ox_1_1_user_correct_month1', WHERE id=?';
+    var params = [question_num, user_id]
     conn.query(sql, params, function(err, rows, fields) {
         if (err) {
             res.send(err);
