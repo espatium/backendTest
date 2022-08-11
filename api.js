@@ -211,7 +211,7 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
     let {user_id} = req.params;
     var question_num = req.body.question_num;
     
-    var sql = 'SELECT ?? FROM s_db_ox_1_1_user_correct_month1', WHERE id=?';
+    var sql = 'SELECT ?? FROM s_db_ox_1_1_user_correct_month1, WHERE user_number=?';
     var params = [question_num, user_id]
     conn.query(sql, params, function(err, rows, fields) {
         if (err) {
@@ -224,7 +224,7 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
                 var new_data = old_data + 1;
             }
             
-            var sql = 'UPDATE s_db_ox_1_1_user_correct_month1 SET ?? = ?, WHERE id=?';
+            var sql = 'UPDATE s_db_ox_1_1_user_correct_month1 SET ?? = ?, WHERE user_number=?';
             var params = [question_num, new_data, user_id]
             conn.query(sql, params, function(err, rows, fields) {
                 if (err) {
