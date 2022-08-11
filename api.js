@@ -188,9 +188,10 @@ app.post('/api/ox_1_1_user_correct_month1/add', function(req, res) {
     var req_body = req.body;
     console.log(req_body);
     var user_num = req.body.user_num;
+    var level = 1
 
-    var sql = 'INSERT INTO s_db_ox_1_1_user_correct_month1 (user_num, 1, 0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0,0,0,0,  0,0,0,0,0,0,0) VALUES (?)';
-    conn.query(sql, [user_num], (err, rows, fields) => {
+    var sql = 'INSERT INTO s_db_ox_1_1_user_correct_month1 (user_num, level,) VALUES (?, ?)';
+    conn.query(sql, [user_num, level], (err, rows, fields) => {
         if(err) {
             console.log(err);
             res.status(500).send('Internal Server Error');
