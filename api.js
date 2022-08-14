@@ -256,6 +256,23 @@ app.put('/api/ox_1_1_user_correct_month1/update/:user_id', function(req, res) {
 
 
 
+//////////////////////////////////////////////////////////////////////
+// 특정시간 예약 이벤트 (node-schedule)
+//////////////////////////////////////////////////////////////////////
+
+
+const schedule = require('node-schedule');
+
+const j = schedule.scheduleJob('10 * * * * *', function() {
+    console.log("매 10초마다 실행");
+});
+
+
+
+
+
+
+
 
 
 
