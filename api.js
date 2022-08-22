@@ -134,7 +134,7 @@ app.post('/api/users/add2', function(req, res) {
     var level = req.body.level;
 
     
-    conn.query(SELECT * FROM users WHERE email=?;',email, function(err, rows, fields) {
+    conn.query('SELECT * FROM users WHERE email=?;',email, function(err, rows, fields) {
                
         if (rows.length == 0) {
             var sql = 'INSERT INTO users (nickname, email, join_date, last_login_date, user_version, level) VALUES (?, ?, ?, ?, ?, ?)';
