@@ -120,6 +120,39 @@ app.post('/api/users/add', function(req, res) {
 
 
 
+
+
+///////////// users DB에 값 추가하기 ///////////////////////////
+app.post('/api/users/add2', function(req, res) {
+    var req_body = req.body;
+    console.log(req_body);
+    var nickname = req.body.nickname.toString();
+    var email = req.body.email.toString();
+    var join_date = req.body.join_date.toString();
+    var last_login_date = req.body.last_login_date.toString();
+    var user_version = req.body.user_version;
+    var level = req.body.level;
+
+    
+    conn.query(SELECT * FROM users WHERE email=?;',email, function(err, rows, fields) {
+               
+        if (rows.length == 0) {
+            var sql = 'INSERT INTO users (nickname, email, join_date, last_login_date, user_version, level) VALUES (?, ?, ?, ?, ?, ?)';
+            conn.query(sql, [nickname, email, join_date, last_login_date, user_version, level], (err, rows, fields) => {
+                if(err) {
+                    console.log(err);
+                    res.status(500).send('Internal Server Error');
+                } else {
+                    console.log(rows);
+                    res.send(rows);
+                }
+            });
+        }     
+    });
+});
+
+
+
 ///////////// users DB에 값 수정하기 ///////////////////////////
 app.put('/api/users/update/:type', function(req, res) {
     let {type} = req.params;
