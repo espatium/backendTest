@@ -147,7 +147,22 @@ app.post('/api/users/add2', function(req, res) {
                     res.send(rows);
                 }
             });
-        }     
+        } else {
+            
+            conn.query('SELECT * FROM users WHERE email=?;',email, function(err, rows, fields) {
+                
+                if(err) {
+                    console.log(err);
+                    res.status(500).send('Internal Server Error');
+                } else {
+                    console.log(rows);
+                    res.send(rows);
+                }
+                
+                
+            });
+            
+        }
     });
 });
 
